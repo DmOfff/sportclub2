@@ -17,7 +17,7 @@ const NavBar = () => {
         <div className="flex flex-col items-center sm:flex-row md:order-2 w-full sm:w-auto">
             <div className={'flex flex-col mr-3 mb-2 sm:mb-0 text-gray-500 text-sm'}>
                 <span>Телефон: <a href={'tel:+70000000000'} className={'text-blue-500'}>+7(000)000-00-00</a></span>
-                <span>E-mail: <a href={'mail:olympic@sport.ru'} className={'text-blue-500'}>olympic@sport.ru</a></span>
+                <span>E-mail: <a href={'maiedlto:olympic@sport.ru'} className={'text-blue-500'}>olympic@sport.ru</a></span>
             </div>
             <Button
                 outline={true}

@@ -1,9 +1,12 @@
+
+
 const Footer = () => {
 
-    return <footer className={'bg-black bottom-0 w-full'}>
-        <div className={'px-2 py-3 my-2 sm:px-4 flex flex-row w-full'}>
+    return <div className={'bg-black w-full'}>
+        <div className={'px-2 py-6 my-2 sm:px-4 w-full text-center text-gray-500'}>
+            <span>© OLYMPIC. Все права защищены.</span>
         </div>
-    </footer>
+    </div>
 
 }
 

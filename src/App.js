@@ -1,17 +1,14 @@
 import './App.css';
 import RouterConfig from "./navigation/RouterConfig";
-import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-
 
 const App = () => {
   return (
     <div className="w-full h-screen flex flex-col">
         <NavBar />
-        <main className={'pt-[60px] w-full pb-72'}>
+        <main className={'pt-[148px] sm:pt-[60px] w-full '}>
             <RouterConfig />
         </main>
-        <Footer />
     </div>
   );
 }
