@@ -30,3 +30,7 @@ html, body {
 .font-sport {
   font-family: 'Sport', sans-serif;
 }
+
+.grid-container {
+  grid-template-columns: auto auto auto;
+}

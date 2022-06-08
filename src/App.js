@@ -4,9 +4,9 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col">
         <NavBar />
-        <main className={'pt-[148px] sm:pt-[60px] w-full '}>
+        <main className={'pt-[148px] sm:pt-[60px] w-full'}>
             <RouterConfig />
         </main>
     </div>

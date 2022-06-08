@@ -48,13 +48,6 @@ const Home = () => {
         </section>
         <section className={'flex flex-col bg-zinc-800 pb-3'}>
             <span className={'text-5xl px-2 my-3 font-bold sm:px-4 uppercase text-center text-white'}>Наши услуги</span>
-            {/*<section className={'bg-black w-full bg-zinc-800 flex flex-row'}>*/}
-            {/*    <img className={'w-1/2 px-2 sm:px-4 py-3 rounded-[32px]'} src={zalImage} />*/}
-            {/*    <div className={'flex flex-col px-2 sm:px-4 py-3 w-full'}>*/}
-            {/*        <span className={'text-3xl text-white text-center'}>Тренажерный зал</span>*/}
-            {/*        <div></div>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
             <span className={'text-4xl px-2 my-2 font-bold sm:px-4 uppercase text-center w-full text-white'}>Бассейн</span>
             <span className={'text-xl px-2 my-0.5 font-bold sm:px-4 uppercase text-center w-full text-white'}>
                 Для взрослых
