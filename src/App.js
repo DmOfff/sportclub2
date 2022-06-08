@@ -1,6 +1,7 @@
 import './App.css';
 import RouterConfig from "./navigation/RouterConfig";
 import NavBar from "./components/NavBar";
+import JoinModal from "./components/Modals/JoinModal";
 
 const App = () => {
   return (
