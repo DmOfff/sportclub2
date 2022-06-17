@@ -13,7 +13,8 @@ const Home = () => {
     const [getContactRequestData, setContactRequestData] = useState({
         name: '',
         phone: '',
-        email: ''
+        email: '',
+        comment: ''
     })
 
 
@@ -154,6 +155,28 @@ const Home = () => {
                                    }}
                             />
                         </div>
+                        <div>
+                            <Label
+                                className="mb-2 block"
+                                htmlFor="comment"
+                            >
+                                Примечание
+                            </Label>
+                            <input
+                                   id="comment"
+                                   type="text"
+                                   placeholder="Примечание"
+                                   required={false}
+                                   className={'rounded'}
+                                   value={getContactRequestData.comment}
+                                   onChange={e => {
+                                       setContactRequestData({
+                                           ...getContactRequestData,
+                                           comment: e.target.value
+                                       })
+                                   }}
+                            />
+                        </div>
                         <span className={'text-gray-500 text-sm'}><span className={'text-red-600'}>*</span> - обязательные поля для ввода</span>
                         <Button type="submit">
                             Отправить
@@ -161,14 +184,17 @@ const Home = () => {
                     </form>
                 </div>
                 <div className={'flex flex-col'}>
-                    <span className={'text-lg'}>Телефон для связи: <a className={'text-blue-500'} href={'tel:+70000000000'}>+7(000)000-00-00</a></span>
+                    <span className={'text-lg'}>Телефоны для связи: <a className={'text-blue-500'} href={'tel:+74991670318'}>+7(499)167-03-18</a></span>
+                    <span className={'text-lg text-white'}>Телефоны для связи: <a className={'text-blue-500'} href={'tel:+79777399330'}>+7(977)739-93-30</a></span>
                     <span className={'text-lg'}>Почта: <a className={'text-blue-500'} href={'mailto:olympic@sport.ru'}>olympic@sport.ru</a></span>
-                    <span className={'text-lg'}>Адрес: <a className={'text-blue-500'} href={'https://yandex.fr/maps/-/CCUamKR8HA'}>г. Москва</a></span>
+                    <span className={'text-lg'}>Адрес: <a className={'text-blue-500'} href={'https://yandex.ru/maps/-/CCUJj4hUcD'}>Москва, Сиреневый бульвар, 4Г </a></span>
+                    <span className={'text-lg'}>График работы: <span className={'text-blue-500'}>пн-пт 08:00–17:00, </span></span>
+                    <span className={'text-lg text-white'}>График работы: <span className={'text-blue-500'}>обед  12:00–13:00 </span></span>
                 </div>
                 <div className={'w-full rounded-xl justify-self-start max-w-md'}>
                     <iframe
-                        src="https://yandex.com/map-widget/v1/?um=constructor%3Adfda7665497b63273876be81f8b4dbbf8522d06a51824983bec95a2b6181be30&amp;source=constructor"
-                        width='100%' height="368" frameBorder="0"></iframe>
+                        src="https://yandex.com/map-widget/v1/?um=constructor%3A79f62ffda59976eff7c70f6e4769f0192bd949bffe00f0ae781bcfef1f031db3&amp;source=constructor"
+                        width="100%" height="368" frameBorder="0" />
                 </div>
             </div>
         </section>

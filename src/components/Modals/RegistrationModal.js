@@ -10,7 +10,8 @@ const RegistrationModal = (props) => {
         name: '',
         phone: '',
         email: '',
-        password: ''
+        password: '',
+        repeatPassword: ''
     })
 
     return <Modal
@@ -93,6 +94,22 @@ const RegistrationModal = (props) => {
                         className={'rounded'}
                         value={formData.password}
                         onChange={e => setFormData({...formData, password: e.target.value})}
+                    />
+                </div>
+                <div>
+                    <Label
+                        className="mb-2 block"
+                        htmlFor="password3"
+                    >
+                        Повторите пароль<span className={'text-red-600'}> *</span>
+                    </Label>
+                    <input
+                        id="password3"
+                        type="password"
+                        required={true}
+                        className={'rounded'}
+                        value={formData.repeatPassword}
+                        onChange={e => setFormData({...formData, repeatPassword: e.target.value})}
                     />
                 </div>
                 <span className={'text-gray-500 text-sm'}><span className={'text-red-600'}>*</span> - обязательные поля для ввода</span>
