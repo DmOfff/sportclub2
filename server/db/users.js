@@ -1,14 +1,14 @@
 const {db} = require('./db')
 
+const getUsers = (cb) => {
 
-const getUsers = () => {
+    let users = []
 
-    const users = []
-
-    db.each(`select * from users`, (err, row) => {
-        console.log(row)
+    db.all(`select id,name,phone,email from users`, (err, rows) => {
+        if (err)
+            console.log(err)
+        cb(rows)
     })
-    return users
 
 }
 

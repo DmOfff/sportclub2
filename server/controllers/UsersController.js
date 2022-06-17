@@ -5,8 +5,10 @@ class UsersController {
 
     getUsers = (req, res) => {
 
+        getUsers((users) => {
+            res.send(JSON.stringify(users))
+        })
 
-        res.send(getUsers())
     }
 }
 
