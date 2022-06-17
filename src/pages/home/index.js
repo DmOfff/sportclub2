@@ -6,10 +6,12 @@ import {Button} from "flowbite-react/lib/esm/components/Button";
 import Footer from "../../components/Footer";
 import {useEffect, useState} from "react";
 import SuccessModal from "../../components/Modals/SuccessModal";
+import ErrorModal from "../../components/Modals/ErrorModal";
 
 const Home = () => {
 
-    const [getShowContactRequestModal, setShowContactRequestModal] = useState(false)
+    const [getShowContactRequestSuccessModal, setShowContactRequestSuccessModal] = useState(false)
+    const [getShowContactRequestErrorModal, setShowContactRequestErrorModal] = useState(false)
     const [getContactRequestData, setContactRequestData] = useState({
         name: '',
         phone: '',
@@ -35,16 +37,19 @@ const Home = () => {
             .then(res => res.json())
             .then(
                 result => {
-                    console.log(result)
                     toggleSuccessContactRequestModalShow()
             },
                 error => {
-
+                    toggleErrorContactRequestModalShow()
                 })
     }
 
     const toggleSuccessContactRequestModalShow = () => {
-        setShowContactRequestModal(!getShowContactRequestModal)
+        setShowContactRequestSuccessModal(!getShowContactRequestSuccessModal)
+    }
+
+    const toggleErrorContactRequestModalShow = () => {
+        setShowContactRequestErrorModal(!getShowContactRequestErrorModal)
     }
 
 
@@ -215,7 +220,8 @@ const Home = () => {
             </div>
         </section>
         <Footer />
-        <SuccessModal data={getContactRequestData} show={getShowContactRequestModal} toggle={toggleSuccessContactRequestModalShow} />
+        <SuccessModal data={getContactRequestData} show={getShowContactRequestSuccessModal} toggle={toggleSuccessContactRequestModalShow} />
+        <ErrorModal show={getShowContactRequestErrorModal} toggle={toggleErrorContactRequestModalShow} />
     </div>
 
 }
