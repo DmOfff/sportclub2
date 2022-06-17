@@ -1,8 +1,6 @@
 const {db} = require('./db')
 
-const getUsers = (cb) => {
-
-    let users = []
+const dbGetUsers = (cb) => {
 
     db.all(`select id,name,phone,email from users`, (err, rows) => {
         if (err)
@@ -12,4 +10,13 @@ const getUsers = (cb) => {
 
 }
 
-module.exports.getUsers = getUsers
+const dbAddContactRequest = (args) => {
+
+    const { name, phone, email, comment } = args
+
+    db.run(`insert into requests values(${null}, "${name}", "${phone}", "${email}", "${comment}", "${Date.now()}")`)
+
+}
+
+module.exports.getUsers = dbGetUsers
+module.exports.dbAddContactRequest = dbAddContactRequest

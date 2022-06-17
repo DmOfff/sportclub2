@@ -24,10 +24,26 @@ const Home = () => {
 
     const sendContactRequest = (e) => {
         e.preventDefault()
-        toggleContactRequestModalShow()
+
+        fetch('http://localhost:9999/users/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(getContactRequestData)
+        })
+            .then(res => res.json())
+            .then(
+                result => {
+                    console.log(result)
+                    toggleSuccessContactRequestModalShow()
+            },
+                error => {
+
+                })
     }
 
-    const toggleContactRequestModalShow = () => {
+    const toggleSuccessContactRequestModalShow = () => {
         setShowContactRequestModal(!getShowContactRequestModal)
     }
 
@@ -199,7 +215,7 @@ const Home = () => {
             </div>
         </section>
         <Footer />
-        <SuccessModal data={getContactRequestData} show={getShowContactRequestModal} toggle={toggleContactRequestModalShow} />
+        <SuccessModal data={getContactRequestData} show={getShowContactRequestModal} toggle={toggleSuccessContactRequestModalShow} />
     </div>
 
 }
