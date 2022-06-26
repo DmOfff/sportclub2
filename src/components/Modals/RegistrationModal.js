@@ -6,6 +6,16 @@ const RegistrationModal = (props) => {
 
     const {show=false, close, open} = props
 
+    const resetFormData = () => {
+        setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            password: '',
+            repeatPassword: ''
+        })
+    }
+
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -13,6 +23,19 @@ const RegistrationModal = (props) => {
         password: '',
         repeatPassword: ''
     })
+
+    const submitForm = e => {
+
+        e.preventDefault()
+
+        const {password, repeatPassword} = formData
+
+        if (password !== repeatPassword)
+            return
+
+        close()
+
+    }
 
     return <Modal
         show={show}
@@ -25,7 +48,7 @@ const RegistrationModal = (props) => {
     >
         <Modal.Header />
         <Modal.Body className={''}>
-            <form className="space-y-2 px-6 pb-4 flex flex-col items-center">
+            <form onSubmit={submitForm} className="space-y-2 px-6 pb-4 flex flex-col items-center">
                 <h3 className="text-xl font-medium text-gray-900">
                     Регистрация
                 </h3>
@@ -123,14 +146,13 @@ const RegistrationModal = (props) => {
                 </div>
                 <div className="text-sm font-medium text-gray-500">
                     Уже есть аккаунт?{' '}
-                    <a
-                        onClick={e => {
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a onClick={e => {
+                            resetFormData()
                             close()
                             open()
                         }}
-                        type={'button'}
-                        className="text-blue-700 hover:underline cursor-pointer"
-                    >
+                        type={'button'} className="text-blue-700 hover:underline cursor-pointer">
                         Войти
                     </a>
                 </div>

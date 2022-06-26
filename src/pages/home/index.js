@@ -5,13 +5,10 @@ import {Label} from "flowbite-react";
 import {Button} from "flowbite-react/lib/esm/components/Button";
 import Footer from "../../components/Footer";
 import {useEffect, useState} from "react";
-import SuccessModal from "../../components/Modals/SuccessModal";
-import ErrorModal from "../../components/Modals/ErrorModal";
+import {toast} from "react-toastify";
 
 const Home = () => {
 
-    const [getShowContactRequestSuccessModal, setShowContactRequestSuccessModal] = useState(false)
-    const [getShowContactRequestErrorModal, setShowContactRequestErrorModal] = useState(false)
     const [getContactRequestData, setContactRequestData] = useState({
         name: '',
         phone: '',
@@ -45,11 +42,27 @@ const Home = () => {
     }
 
     const toggleSuccessContactRequestModalShow = () => {
-        setShowContactRequestSuccessModal(!getShowContactRequestSuccessModal)
+        toast.success('Запрос отправлен!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     const toggleErrorContactRequestModalShow = () => {
-        setShowContactRequestErrorModal(!getShowContactRequestErrorModal)
+        toast.error('К сожалению произошла ошибка. Попробуйте позже.', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
 
@@ -213,6 +226,7 @@ const Home = () => {
                     <span className={'text-lg text-white'}>График работы: <span className={'text-blue-500'}>обед  12:00–13:00 </span></span>
                 </div>
                 <div className={'w-full rounded-xl justify-self-start max-w-md'}>
+                    {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
                     <iframe
                         src="https://yandex.com/map-widget/v1/?um=constructor%3A79f62ffda59976eff7c70f6e4769f0192bd949bffe00f0ae781bcfef1f031db3&amp;source=constructor"
                         width="100%" height="368" frameBorder="0" />
@@ -220,8 +234,6 @@ const Home = () => {
             </div>
         </section>
         <Footer />
-        <SuccessModal data={getContactRequestData} show={getShowContactRequestSuccessModal} toggle={toggleSuccessContactRequestModalShow} />
-        <ErrorModal show={getShowContactRequestErrorModal} toggle={toggleErrorContactRequestModalShow} />
     </div>
 
 }

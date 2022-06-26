@@ -1,7 +1,8 @@
 import './App.css';
 import RouterConfig from "./navigation/RouterConfig";
 import NavBar from "./components/NavBar";
-import JoinModal from "./components/Modals/JoinModal";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <main className={'pt-[148px] sm:pt-[60px] w-full'}>
             <RouterConfig />
         </main>
+        <ToastContainer />
     </div>
   );
 }
