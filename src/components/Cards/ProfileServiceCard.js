@@ -5,13 +5,14 @@ import {Button} from "flowbite-react/lib/esm/components/Button";
 
 const ProfileServiceCard = (props) => {
 
-    const {name='noname', expireDate='2022-06-08T21:04:44.877Z', count=0, status=STATUS.active, type=SERVICE_TYPES.abonement} = props
+    const {name='noname', expireDate='2022-06-08T21:04:44.877Z', count=0, status=STATUS.active, type=SERVICE_TYPES.abonement, cancel, id} = props
 
     return <Card className={'min-w-sm gap-0.5'} href={'#'}>
         <h5 className={'text-2xl font-bold tracking-tight text-gray-900'}>{name}</h5>
         {
             type === SERVICE_TYPES.abonement ? (
                 <>
+                    <span>Осталось: <span>{count}</span> посещений(-я)</span>
                     <div className={'flex flex-row items-center justify-items-start'}>
                         <span className="p-1 mr-2 text-sm font-semibold text-white bg-green-500 rounded-full">
                             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path
@@ -24,7 +25,6 @@ const ProfileServiceCard = (props) => {
                             Активен до {dateFormat(expireDate)}
                         </span>
                     </div>
-                    <span>Осталось: <span>{count}</span> посещений(-я)</span>
                 </>
             ) : <></>
         }
@@ -46,7 +46,7 @@ const ProfileServiceCard = (props) => {
                                 Ожидание звонка от специалиста
                             </span>
                         </div>
-                        <Button color="red">
+                        <Button onClick={e => cancel(id)} color="red">
                             Отмена заявки
                         </Button>
                     </>

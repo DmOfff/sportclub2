@@ -1,7 +1,6 @@
 import { Label, Modal} from "flowbite-react";
 import { Button } from "flowbite-react/lib/esm/components/Button";
 import {useState} from "react";
-import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
 import {setUser} from "../../utils/auth";
 
@@ -114,6 +113,7 @@ const JoinModal = (props) => {
                 </div>
                 <div className="text-sm font-medium text-gray-500">
                     Не зарегистрированы?{' '}
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a
                         onClick={e => {
                         close()

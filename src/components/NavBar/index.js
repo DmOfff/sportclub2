@@ -5,7 +5,6 @@ import JoinModal from "../Modals/JoinModal";
 import RegistrationModal from "../Modals/RegistrationModal";
 import {useState} from "react";
 
-import {isAuthenticated} from '../../utils/auth'
 import Login from "./Login";
 
 const NavBar = () => {

@@ -6,6 +6,9 @@ import {Button} from "flowbite-react/lib/esm/components/Button";
 import Footer from "../../components/Footer";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import BuyModal from "../../components/Modals/BuyModal";
+import {isAuthenticated} from "../../utils/auth";
+import {SERVICE_TYPES} from "../../utils/types";
 
 const Home = () => {
 
@@ -15,6 +18,15 @@ const Home = () => {
         email: '',
         comment: ''
     })
+
+    const [buyData, setBuyData] = useState({
+        name: '',
+        count: '',
+        price: 0,
+        type: SERVICE_TYPES.abonement
+    })
+
+    const [showBuyFormModal, setShowBuyFormModal] = useState(false)
 
 
     useEffect(()=> {
@@ -51,6 +63,12 @@ const Home = () => {
             draggable: true,
             progress: undefined,
         });
+        setContactRequestData({
+            name: '',
+            phone: '',
+            email: '',
+            comment: ''
+        })
     }
 
     const toggleErrorContactRequestModalShow = () => {
@@ -63,6 +81,35 @@ const Home = () => {
             draggable: true,
             progress: undefined,
         });
+    }
+
+    const openBuyModal = (name, count, price, type) => {
+
+        if (isAuthenticated()) {
+            setBuyData({
+                name,
+                count,
+                price,
+                type
+            })
+            setShowBuyFormModal(true)
+        } else {
+            toast.warning('Для покупки нужно авторизоваться!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+
+
+    }
+
+    const closeBuyModal = () => {
+        setShowBuyFormModal(false)
     }
 
 
@@ -88,32 +135,32 @@ const Home = () => {
                 Для взрослых
             </span>
             <div className={'w-full flex flex-col px-2 my-3 flex flex-row justify-center space-x-0 space-y-3 sm:space-x-3 sm:space-y-0 sm:flex-row sm:px-4 '}>
-                <ServiceCard price={200} count={1} name={'Бассейн-1'} />
-                <ServiceCard price={700} count={4} name={'Бассейн-4'} />
-                <ServiceCard price={1450} count={8} name={'Бассейн-8'} />
-                <ServiceCard price={2000} count={'∞'} name={'Бассейн "Безлимит"'} />
+                <ServiceCard click={openBuyModal} price={200} count={1} name={'Бассейн-1'} />
+                <ServiceCard click={openBuyModal} price={700} count={4} name={'Бассейн-4'} />
+                <ServiceCard click={openBuyModal} price={1450} count={8} name={'Бассейн-8'} />
+                <ServiceCard click={openBuyModal} price={2000} count={'∞'} name={'Бассейн "Безлимит"'} />
                 <div className={'bg-white/30 w-[4px] h-full rounded'}></div>
-                <ServiceCard price={220} count={1} name={'Групповое занятие'} />
+                <ServiceCard click={openBuyModal} price={220} count={1} name={'Групповое занятие'} />
             </div>
             <span className={'text-xl px-2 my-0.5 font-bold sm:px-4 uppercase text-center w-full text-white'}>
                 Для детей
             </span>
             <div className={'w-full flex flex-col px-2 my-3 flex flex-row justify-center space-x-0 space-y-3 sm:space-x-3 sm:space-y-0 sm:flex-row sm:px-4 '}>
-                <ServiceCard price={120} count={1} name={'Бассейн-1'} />
-                <ServiceCard price={350} count={4} name={'Бассейн-4'} />
-                <ServiceCard price={600} count={8} name={'Бассейн-8'} />
-                <ServiceCard price={1500} count={'∞'} name={'Бассейн "Безлимит"'} />
+                <ServiceCard click={openBuyModal} price={120} count={1} name={'Бассейн-1'} />
+                <ServiceCard click={openBuyModal} price={350} count={4} name={'Бассейн-4'} />
+                <ServiceCard click={openBuyModal} price={600} count={8} name={'Бассейн-8'} />
+                <ServiceCard click={openBuyModal} price={1500} count={'∞'} name={'Бассейн "Безлимит"'} />
                 <div className={'bg-white/30 w-[4px] h-full rounded'}></div>
-                <ServiceCard price={220} count={1} name={'Групповое занятие'} />
+                <ServiceCard click={openBuyModal} price={220} count={1} name={'Групповое занятие'} />
             </div>
             <span className={'text-4xl px-2 my-3 font-bold sm:px-4 uppercase text-center w-full text-white'}>Тренажерный зал</span>
             <div className={'w-full flex flex-col px-2 my-3 flex flex-row justify-center space-x-0 space-y-3 sm:space-x-3 sm:space-y-0 sm:flex-row sm:px-4 '}>
-                <ServiceCard price={280} count={1} name={'Тренировка-1'} />
-                <ServiceCard price={1600} count={8} name={'Тренировка-8'} />
-                <ServiceCard price={2400} count={'∞'} name={'Тренировка "Безлимит"'} />
+                <ServiceCard click={openBuyModal} price={280} count={1} name={'Тренировка-1'} />
+                <ServiceCard click={openBuyModal} price={1600} count={8} name={'Тренировка-8'} />
+                <ServiceCard click={openBuyModal} price={2400} count={'∞'} name={'Тренировка "Безлимит"'} />
                 <div className={'bg-white/30 w-[4px] h-full rounded'}></div>
-                <ContactCard price={500} name={'Консультация'}/>
-                <ContactCard price={750} name={'Составление программы занятий'}/>
+                <ContactCard click={openBuyModal} price={500} name={'Консультация'}/>
+                <ContactCard click={openBuyModal} price={750} name={'Составление программы занятий'}/>
             </div>
         </section>
         <section className={'mt-1 pb-12'}>
@@ -233,6 +280,7 @@ const Home = () => {
                 </div>
             </div>
         </section>
+        <BuyModal show={showBuyFormModal} open={openBuyModal} close={closeBuyModal} data={buyData}/>
         <Footer />
     </div>
 

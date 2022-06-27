@@ -1,9 +1,20 @@
 import Footer from "../../components/Footer";
 import Services from "./Services";
+import {isAuthenticated} from "../../utils/auth";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+import dateFormat from "../../utils/time";
 
 const Profile = () => {
 
+    const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
+
+    useEffect(()=> {
+        if (!isAuthenticated())
+            navigate('/')
+    }, [])
+
 
     return <div className={'h-screen flex flex-col'}>
         <section className={'px-2 py-3 my-2 sm:px-4 w-full flex-1'}>
@@ -27,6 +38,9 @@ const Profile = () => {
                             </span>
                             <span>
                                 E-Mail: <span className={'font-bold text-blue-500'}>{user.email}</span>
+                            </span>
+                            <span>
+                               Дата регистрации: <span className={'font-bold text-blue-500'}>{dateFormat(new Date(user.createDate))}</span>
                             </span>
                         </form>
                     </div>

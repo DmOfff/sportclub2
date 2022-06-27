@@ -37,7 +37,7 @@ class UsersController {
 
     loginUser = async (req, res) => {
 
-        const {phone, password, createDate} = req.body
+        const {phone, password} = req.body
 
         dbLoginUser(phone, password)
             .then(r => {

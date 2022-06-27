@@ -5,23 +5,24 @@ import { Button } from "flowbite-react/lib/esm/components/Button";
 
 const SuccessModal = (props) => {
 
-    const {show, toggle, data} = props
+    const {show, close} = props
 
     return <Modal
         show={show}
-        size={'md'}
+        size={'sm'}
+        onClose={e => close()}
     >
         <Modal.Header>
-            <span className={'text-center'}>Заявка отправлена</span>
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                Спасибо за покупку!
+            </h3>
         </Modal.Header>
         <Modal.Body>
             <div className="text-center">
-                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                    Уважаемый {data.name}, ожидайте скорой связи от специалиста!
-                </h3>
+
                 <div className="flex justify-center gap-4">
                     <Button
-                        onClick={toggle}
+                        onClick={e => close()}
                     >
                         Ок
                     </Button>

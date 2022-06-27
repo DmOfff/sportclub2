@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use('/users', require('./routes/user') )
+app.use('/services', require('./routes/services') )
 
 app.listen(9999, () => {
     console.log(`Сервер запущен на  localhost:${9999}`)

@@ -1,8 +1,9 @@
 import {Card} from "flowbite-react";
+import {SERVICE_TYPES} from "../../utils/types";
 
 const ContactCard = (props) => {
 
-    const {name, price} = props
+    const {name, price, click} = props
 
     return(
         <div className={'max-w-sm'}>
@@ -15,6 +16,7 @@ const ContactCard = (props) => {
                 </div>
                 <div className={'h-full'} />
                 <button
+                    onClick={e => click(name, null, price, SERVICE_TYPES.service)}
                     type="button"
                     className="inline-flex w-full justify-center rounded-lg bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900"
                 >
