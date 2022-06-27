@@ -3,6 +3,7 @@ import { Button } from "flowbite-react/lib/esm/components/Button";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
+import {setUser} from "../../utils/auth";
 
 const JoinModal = (props) => {
 
@@ -21,14 +22,32 @@ const JoinModal = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
-                ...formData
-            }
+            body: JSON.stringify(formData)
         })
             .then(res => res.json())
             .then(
                 result => {
-
+                    if (result?.err)
+                        return toast.error(result?.msg, {
+                            position: "bottom-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    toast.success('Успешный вход', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    setUser(result)
+                    return close()
                 },
                 error => {
 

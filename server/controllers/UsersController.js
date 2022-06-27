@@ -39,9 +39,18 @@ class UsersController {
 
         const {phone, password, createDate} = req.body
 
-        dbLoginUser(phone, password, (user) => {
-
-        })
+        dbLoginUser(phone, password)
+            .then(r => {
+                res.json({
+                    ...r
+                })
+            })
+            .catch(err => {
+                res.json({
+                    err: true,
+                    msg: 'Номер телефона или пароль не верный'
+                })
+            })
 
     }
 

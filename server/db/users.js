@@ -3,9 +3,13 @@ const crypto = require('crypto')
 
 
 const checkUser = async (phone, email, cb) => {
-    db.all(`SELECT * FROM users WHERE phone="${phone}" or email="${email}"`, (errm, result) => {
+    db.all(`SELECT * FROM users WHERE phone="${phone}" or email="${email}"`, (err, result) => {
         cb(result.length)
     })
+}
+
+const updateAccessToken = async (id, token="NULL") => {
+    db.run(`UPDATE users SET accessToken="${token}" WHERE id="${id}"`)
 }
 
 const dbGetUsers = (cb) => {
@@ -26,7 +30,7 @@ const dbAddContactRequest = (args) => {
 
 }
 
-const dbAddUser = async (args, cb) => {
+const dbAddUser = async (args) => {
 
     const {name, phone, email, password} = args
 
@@ -47,11 +51,24 @@ const dbAddUser = async (args, cb) => {
     })
 }
 
-const dbLoginUser = async (phone, password, cb) => {
+const dbLoginUser = async (phone, password) => {
 
     const hashedPassword = crypto.createHash('sha1').update(password).digest('hex')
 
-    db.get('SELECT name, acc')
+    return new Promise(async (resolve, reject) => {
+        db.get(`SELECT * FROM users WHERE phone="${phone}" and password="${hashedPassword}"`, (err, user) => {
+
+            if (!user)
+                return reject('no found')
+            const accessToken = crypto.createHash('sha1').update(crypto.randomUUID()).digest('hex')
+            updateAccessToken(user.id, accessToken)
+
+            resolve({
+                ...user,
+                accessToken
+            })
+        })
+    })
 
 }
 

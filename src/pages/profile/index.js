@@ -3,6 +3,8 @@ import Services from "./Services";
 
 const Profile = () => {
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
     return <div className={'h-screen flex flex-col'}>
         <section className={'px-2 py-3 my-2 sm:px-4 w-full flex-1'}>
             <span className={'text-3xl text-center block font-bold uppercase mb-6'}>Личный кабинет</span>
@@ -15,16 +17,16 @@ const Profile = () => {
                     <div className={'w-full'}>
                         <form className={'flex flex-col gap-1'}>
                             <span>
-                                Уникальный идентификатор: <span className={'font-bold text-blue-500'}>5123123123</span>
+                                Уникальный идентификатор: <span className={'font-bold text-blue-500'}>{user.id}</span>
                             </span>
                             <span>
-                                Фамилия и Имя: <span className={'font-bold text-blue-500'}>Иванов Иван</span>
+                                Фамилия и Имя: <span className={'font-bold text-blue-500'}>{user.name}</span>
                             </span>
                             <span>
-                                Номер телефона: <span className={'font-bold text-blue-500'}>+7(921)999-99-99</span>
+                                Номер телефона: <span className={'font-bold text-blue-500'}>{user.phone}</span>
                             </span>
                             <span>
-                                E-Mail: <span className={'font-bold text-blue-500'}>test@email.ru</span>
+                                E-Mail: <span className={'font-bold text-blue-500'}>{user.email}</span>
                             </span>
                         </form>
                     </div>
