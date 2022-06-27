@@ -2,10 +2,14 @@ import './navbar.css'
 import {Navbar, Button} from "flowbite-react";
 import logo from '../../assets/img/logo.png'
 import JoinModal from "../Modals/JoinModal";
-import {useState} from "react";
 import RegistrationModal from "../Modals/RegistrationModal";
+import {useState} from "react";
+
+import {isAuthenticated} from '../../utils/auth'
+import Login from "./Login";
 
 const NavBar = () => {
+
 
     const [getVisibilityJoinModal, setVisibilityJoinModal] = useState(false)
 
@@ -42,13 +46,7 @@ const NavBar = () => {
                     <span>Телефон: <a href={'tel:+74991670318'} className={'text-blue-500'}>+7(499)167-03-18</a></span>
                     <span>E-mail: <a href={'maildto:olympic@sport.ru'} className={'text-blue-500'}>olympic@sport.ru</a></span>
                 </div>
-                <Button
-                    outline={true}
-                    gradientDuoTone="greenToBlue"
-                    onClick={e => openJoinModal()}
-                >
-                    Войти
-                </Button>
+                <Login openJoinModal={openJoinModal} />
             </div>
         </Navbar>
         <JoinModal show={getVisibilityJoinModal} open={openRegModal} close={closeJoinModal} />

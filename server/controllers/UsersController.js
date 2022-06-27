@@ -1,4 +1,4 @@
-const {dbGetUsers, dbAddContactRequest} = require('../db/users')
+const {dbGetUsers, dbAddContactRequest, dbAddUser, dbLoginUser} = require('../db/users')
 
 
 class UsersController {
@@ -21,6 +21,30 @@ class UsersController {
         })
 
     }
+
+    regUser = async (req, res) => {
+
+        dbAddUser(req.body)
+            .then(result => {
+            if (result?.err)
+                return res.status(400).json({err: true, msg: 'Пользователь с таким логином или паролем уже существует!'})
+            else
+                return res.status(200).json({msg: 'Успещная регистрация'})
+        })
+
+
+    }
+
+    loginUser = async (req, res) => {
+
+        const {phone, password, createDate} = req.body
+
+        dbLoginUser(phone, password, (user) => {
+
+        })
+
+    }
+
 }
 
 

@@ -1,6 +1,7 @@
 import { Label, Modal} from "flowbite-react";
 import { Button } from "flowbite-react/lib/esm/components/Button";
 import {useState} from "react";
+import {toast} from "react-toastify";
 
 const RegistrationModal = (props) => {
 
@@ -31,10 +32,59 @@ const RegistrationModal = (props) => {
         const {password, repeatPassword} = formData
 
         if (password !== repeatPassword)
-            return
+            return toast.warning('Пароли не совпадают!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
-        close()
 
+        fetch('http://localhost:9999/users/reg', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(res => res.json())
+            .then(
+                result => {
+                    if (result?.err)
+                        return toast.error(result?.msg, {
+                            position: "bottom-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    toast.success(result?.msg, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    return close()
+                },
+                error => {
+                    toast.error('Произошла ошибка', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                })
     }
 
     return <Modal

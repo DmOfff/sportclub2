@@ -1,6 +1,8 @@
 import { Label, Modal} from "flowbite-react";
 import { Button } from "flowbite-react/lib/esm/components/Button";
 import {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
 
 const JoinModal = (props) => {
 
@@ -10,6 +12,29 @@ const JoinModal = (props) => {
         phone: '',
         password: ''
     })
+
+    const login = (e) => {
+        e.preventDefault()
+
+        fetch('http://localhost:9999/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                ...formData
+            }
+        })
+            .then(res => res.json())
+            .then(
+                result => {
+
+                },
+                error => {
+
+                })
+
+    }
 
     return <Modal
         show={show}
@@ -22,7 +47,7 @@ const JoinModal = (props) => {
     >
         <Modal.Header />
         <Modal.Body className={''}>
-            <form className="space-y-2 px-6 pb-4 flex flex-col items-center">
+            <form onSubmit={login} className="space-y-2 px-6 pb-4 flex flex-col items-center">
                 <h3 className="text-xl font-medium text-gray-900">
                     Вход в аккаунт
                 </h3>
